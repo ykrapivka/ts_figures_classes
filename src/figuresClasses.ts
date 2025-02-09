@@ -13,14 +13,7 @@ export class Triangle implements Figure {
     private b: number,
     private c: number,
   ) {
-    if (
-      a <= 0 ||
-      b <= 0 ||
-      c <= 0 ||
-      Math.max(a, b, c) >= a + b ||
-      Math.max(a, b, c) >= a + c ||
-      Math.max(a, b, c) >= b + c
-    ) {
+    if (a <= 0 || b <= 0 || c <= 0 || a + b <= c || a + c <= b || b + c <= a) {
       throw new Error('your error message');
     }
     this.shape = 'triangle';
@@ -66,7 +59,6 @@ export class Rectangle implements Figure {
     if (width <= 0 || height <= 0) {
       throw new Error('your error message');
     }
-    this.shape = 'circle';
     this.shape = 'rectangle';
   }
 
@@ -75,6 +67,6 @@ export class Rectangle implements Figure {
   }
 }
 
-export function getInfo(figure): string {
+export function getInfo(figure: Figure): string {
   return `A ${figure.color} ${figure.shape} - ${figure.getArea()}`;
 }
